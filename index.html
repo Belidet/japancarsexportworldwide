@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="theme-color" content="#1A1A2E">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Japan Cars Export Worldwide | Premium JDM Export</title>
   <!-- Fonts: Inter + Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,12 +16,18 @@
   <style>
     /* ----- RESET & BASE (Deep Indigo) ----- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
     body {
       font-family: 'Inter', sans-serif;
       background: #1A1A2E;
       color: #e8e8f0;
       line-height: 1.6;
       scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
@@ -58,7 +68,7 @@
     }
     .nav-logo {
       font-weight: 800;
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       letter-spacing: 1px;
       color: #fff;
       display: flex;
@@ -73,9 +83,9 @@
       gap: 24px;
       list-style: none;
       font-weight: 500;
-      font-size: 0.85rem;
+      font-size: clamp(0.75rem, 1.5vw, 0.85rem);
     }
-    .nav-links a { transition: 0.2s; color: #d0d0e0; }
+    .nav-links a { transition: 0.2s; color: #d0d0e0; white-space: nowrap; }
     .nav-links a:hover { color: var(--gold); }
     .nav-cta {
       background: var(--gold);
@@ -91,10 +101,11 @@
     /* ----- HERO WITH FULLY VISIBLE BACKGROUND (Mobile + Desktop) ----- */
     .hero {
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 120px 24px 80px;
+      padding: clamp(80px, 15vh, 120px) 24px clamp(40px, 8vh, 80px);
       position: relative;
       overflow: hidden;
       background: #1A1A2E;
@@ -127,48 +138,54 @@
       z-index: 2;
       max-width: 900px;
       text-align: center;
+      padding: 0 8px;
     }
     .hero h1 {
-      font-size: clamp(2.2rem, 7vw, 4.8rem);
+      font-size: clamp(1.8rem, 7vw, 4.8rem);
       font-weight: 800;
       letter-spacing: 2px;
       color: #ffffff;
       text-shadow: 0 4px 32px rgba(0,0,0,0.6);
+      word-break: break-word;
     }
     .hero h1 span { color: var(--gold); }
     .hero p {
-      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
       max-width: 640px;
       margin: 16px auto 32px;
       color: #f0f0fa;
       font-weight: 300;
       text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+      padding: 0 8px;
     }
     .btn-primary {
       background: var(--gold);
       border: none;
-      padding: 14px 48px;
+      padding: clamp(12px, 2vh, 14px) clamp(28px, 4vw, 48px);
       border-radius: 60px;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
       color: #1A1A2E;
       box-shadow: 0 12px 24px -8px rgba(201, 168, 76, 0.3);
       transition: 0.25s;
       display: inline-block;
       cursor: pointer;
+      touch-action: manipulation;
     }
     .btn-primary:hover { background: var(--gold-dim); transform: translateY(-4px); box-shadow: 0 18px 28px -6px rgba(201, 168, 76, 0.4); color: #fff; }
+    .btn-primary:active { transform: scale(0.97); }
 
     .hero-decoration {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: clamp(12px, 2vw, 20px);
       margin: 20px 0 28px;
+      flex-wrap: wrap;
     }
     .hero-decoration span {
       display: inline-block;
-      width: 8px;
-      height: 8px;
+      width: clamp(6px, 1vw, 8px);
+      height: clamp(6px, 1vw, 8px);
       border-radius: 50%;
       background: var(--gold);
       opacity: 0.4;
@@ -184,62 +201,66 @@
     }
 
     /* ----- SECTIONS ----- */
-    section { padding: 80px 0; }
+    section { padding: clamp(40px, 10vh, 80px) 0; }
     .section-title {
-      font-size: 2.2rem;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
       font-weight: 700;
       margin-bottom: 16px;
       letter-spacing: -0.5px;
       color: #f0f0fa;
     }
     .section-title span { color: var(--gold); }
-    .section-sub { color: #aab; opacity: 0.8; max-width: 600px; margin-bottom: 40px; }
+    .section-sub { color: #aab; opacity: 0.8; max-width: 600px; margin-bottom: 40px; font-size: clamp(0.9rem, 1.5vw, 1rem); }
 
     .grid-4 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+      gap: clamp(16px, 2vw, 28px);
     }
     .service-card {
       background: rgba(26, 26, 46, 0.5);
       backdrop-filter: blur(4px);
-      padding: 28px 20px;
+      -webkit-backdrop-filter: blur(4px);
+      padding: clamp(20px, 3vw, 28px) clamp(16px, 2vw, 20px);
       border-radius: 28px;
       border: 1px solid rgba(201, 168, 76, 0.06);
       transition: 0.3s;
       text-align: center;
     }
     .service-card:hover { transform: translateY(-10px); border-color: var(--gold); background: rgba(201, 168, 76, 0.04); }
-    .service-card i { font-size: 2.8rem; color: var(--gold); margin-bottom: 16px; }
-    .service-card h3 { font-weight: 600; font-size: 1.2rem; color: #f0f0fa; }
-    .service-card p { color: #aab; font-size: 0.9rem; }
+    .service-card i { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--gold); margin-bottom: 16px; }
+    .service-card h3 { font-weight: 600; font-size: clamp(1rem, 1.5vw, 1.2rem); color: #f0f0fa; }
+    .service-card p { color: #aab; font-size: clamp(0.8rem, 1.2vw, 0.9rem); }
 
     /* ----- QUOTE FORM ----- */
     .quote-form-wrap {
       background: rgba(26, 26, 46, 0.6);
       backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: 28px;
-      padding: 40px;
+      padding: clamp(16px, 3vw, 40px);
       border: 1px solid rgba(201, 168, 76, 0.08);
     }
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px 32px;
+      gap: clamp(16px, 2vw, 24px) clamp(16px, 3vw, 32px);
     }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group label { font-weight: 500; font-size: 0.85rem; color: #c0c0d8; }
+    .form-group label { font-weight: 500; font-size: clamp(0.75rem, 1.2vw, 0.85rem); color: #c0c0d8; }
     .form-group label .required { color: var(--gold); }
     .form-group input, .form-group select, .form-group textarea {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 16px;
-      padding: 14px 18px;
+      padding: clamp(12px, 1.5vw, 14px) clamp(14px, 2vw, 18px);
       color: #e8e8f0;
-      font-size: 0.95rem;
+      font-size: clamp(0.85rem, 1.2vw, 0.95rem);
       transition: 0.2s;
       outline: none;
       width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
     }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
       border-color: var(--gold);
@@ -251,14 +272,15 @@
       background: rgba(255,255,255,0.02);
       border: 2px dashed rgba(201, 168, 76, 0.15);
       border-radius: 16px;
-      padding: 20px;
+      padding: clamp(16px, 2vw, 20px);
       text-align: center;
       cursor: pointer;
       transition: 0.2s;
+      touch-action: manipulation;
     }
     .file-upload-wrap:hover { border-color: var(--gold); background: rgba(201, 168, 76, 0.02); }
-    .file-upload-wrap i { font-size: 2rem; color: var(--gold); opacity: 0.5; }
-    .file-upload-wrap p { font-size: 0.8rem; color: #889; margin-top: 4px; }
+    .file-upload-wrap i { font-size: clamp(1.5rem, 3vw, 2rem); color: var(--gold); opacity: 0.5; }
+    .file-upload-wrap p { font-size: clamp(0.7rem, 1vw, 0.8rem); color: #889; margin-top: 4px; }
     .file-upload-wrap input[type="file"] { display: none; }
 
     .form-feedback {
@@ -267,6 +289,7 @@
       border-radius: 16px;
       font-weight: 500;
       display: none;
+      font-size: clamp(0.9rem, 1.2vw, 1rem);
     }
     .form-feedback.success {
       display: block;
@@ -284,37 +307,40 @@
     /* ----- FOOTER ----- */
     footer {
       background: #121225;
-      padding: 48px 0 24px;
+      padding: clamp(32px, 6vh, 48px) 0 clamp(16px, 3vh, 24px);
       border-top: 1px solid rgba(201, 168, 76, 0.06);
     }
     .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+      gap: clamp(20px, 3vw, 32px);
     }
-    .footer-grid h4 { color: var(--gold); margin-bottom: 16px; }
-    .footer-grid a { display: block; opacity: 0.6; margin-bottom: 6px; transition: 0.2s; }
+    .footer-grid h4 { color: var(--gold); margin-bottom: 16px; font-size: clamp(0.9rem, 1.2vw, 1rem); }
+    .footer-grid a { display: block; opacity: 0.6; margin-bottom: 6px; transition: 0.2s; font-size: clamp(0.8rem, 1vw, 0.9rem); }
     .footer-grid a:hover { opacity: 1; color: var(--gold); }
-    .social i { font-size: 1.4rem; margin-right: 12px; opacity: 0.5; transition: 0.2s; }
+    .social i { font-size: clamp(1.2rem, 2vw, 1.4rem); margin-right: 12px; opacity: 0.5; transition: 0.2s; }
     .social i:hover { opacity: 1; color: var(--gold); }
 
     .whatsapp-float {
       position: fixed;
-      bottom: 28px; right: 28px;
+      bottom: clamp(16px, 3vh, 28px);
+      right: clamp(16px, 3vw, 28px);
       background: #25D366;
       color: white;
-      width: 60px;
-      height: 60px;
+      width: clamp(50px, 8vw, 60px);
+      height: clamp(50px, 8vw, 60px);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: clamp(1.6rem, 3vw, 2rem);
       box-shadow: 0 8px 24px rgba(37,211,102,0.3);
       z-index: 999;
       transition: 0.2s;
+      touch-action: manipulation;
     }
     .whatsapp-float:hover { transform: scale(1.08); }
+    .whatsapp-float:active { transform: scale(0.95); }
 
     .text-gold { color: var(--gold); }
     .text-cyan { color: var(--cyan); }
@@ -329,16 +355,20 @@
       border: 1px solid rgba(201, 168, 76, 0.04);
     }
     .faq-question {
-      padding: 18px 24px;
+      padding: clamp(16px, 2vw, 18px) clamp(16px, 2vw, 24px);
       display: flex;
       justify-content: space-between;
       font-weight: 600;
       cursor: pointer;
       transition: 0.2s;
       color: #e0e0f0;
+      font-size: clamp(0.9rem, 1.2vw, 1rem);
+      gap: 12px;
+      align-items: center;
+      touch-action: manipulation;
     }
     .faq-question:hover { background: rgba(201, 168, 76, 0.04); }
-    .faq-answer { max-height: 0; padding: 0 24px; overflow: hidden; transition: 0.35s ease; color: #aab; }
+    .faq-answer { max-height: 0; padding: 0 24px; overflow: hidden; transition: 0.35s ease; color: #aab; font-size: clamp(0.85rem, 1.1vw, 0.95rem); }
     .faq-item.active .faq-answer { max-height: 200px; padding: 0 24px 20px; }
 
     /* ----- RESPONSIVE ----- */
@@ -356,11 +386,12 @@
       }
       .nav-links.open { display: flex; }
       .hamburger { display: block; }
+      .nav-links a { white-space: normal; }
       .quote-form-wrap { padding: 24px; }
     }
 
     @media (max-width: 600px) {
-      .hero { padding: 100px 16px 60px; }
+      .hero { padding: 100px 16px 50px; }
       .hero h1 { font-size: 1.8rem; }
       .hero p { font-size: 0.95rem; }
       .btn-primary { padding: 12px 28px; font-size: 0.95rem; }
@@ -374,14 +405,36 @@
       .quote-form-wrap { padding: 16px; }
       .service-card { padding: 20px 16px; }
       .grid-4 { gap: 16px; }
-      .whatsapp-float { width: 50px; height: 50px; font-size: 1.6rem; bottom: 20px; right: 20px; }
+      .whatsapp-float { width: 50px; height: 50px; font-size: 1.6rem; bottom: 16px; right: 16px; }
     }
 
     @media (max-width: 400px) {
       .hero h1 { font-size: 1.5rem; }
       .hero-decoration { gap: 12px; }
       .hero-decoration span { width: 6px; height: 6px; }
+      .nav-links { padding: 16px; gap: 12px; }
+      .nav-cta { padding: 6px 16px; font-size: 0.8rem; }
     }
+
+    /* Touch-friendly improvements */
+    input, select, textarea, button, .file-upload-wrap, .faq-question {
+      touch-action: manipulation;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23aab' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+    select option { background: #1A1A2E; color: #e8e8f0; }
   </style>
 </head>
 <body>
@@ -399,7 +452,7 @@
       <li><a href="#contact">Contact</a></li>
       <li><a href="#quote" class="nav-cta"><i class="fas fa-paper-plane"></i> Quote</a></li>
     </ul>
-    <div class="hamburger" onclick="toggleNav()"><i class="fas fa-bars"></i></div>
+    <div class="hamburger" onclick="toggleNav()" aria-label="Toggle navigation menu"><i class="fas fa-bars"></i></div>
   </nav>
 
   <!-- HERO WITH FULLY VISIBLE BACKGROUND -->
@@ -432,11 +485,11 @@
             </div>
             <div class="form-group">
               <label>Email Address <span class="required">*</span></label>
-              <input type="email" id="email" required placeholder="you@example.com">
+              <input type="email" id="email" required placeholder="you@example.com" inputmode="email">
             </div>
             <div class="form-group">
               <label>Phone Number</label>
-              <input type="tel" id="phone" placeholder="+81 70-1367-5588">
+              <input type="tel" id="phone" placeholder="+81 70-1367-5588" inputmode="tel">
             </div>
             <div class="form-group">
               <label>Country</label>
@@ -566,15 +619,15 @@
             </div>
             <div class="form-group">
               <label>Year Range (From)</label>
-              <input type="number" id="yearFrom" placeholder="2015" min="1980" max="2026">
+              <input type="number" id="yearFrom" placeholder="2015" min="1980" max="2026" inputmode="numeric">
             </div>
             <div class="form-group">
               <label>Year Range (To)</label>
-              <input type="number" id="yearTo" placeholder="2023" min="1980" max="2026">
+              <input type="number" id="yearTo" placeholder="2023" min="1980" max="2026" inputmode="numeric">
             </div>
             <div class="form-group">
               <label>Budget (approx.)</label>
-              <input type="text" id="budget" placeholder="e.g. 25000, 15000-20000">
+              <input type="text" id="budget" placeholder="e.g. 25000, 15000-20000" inputmode="numeric">
             </div>
             <div class="form-group">
               <label>Preferred Shipping Method</label>
@@ -600,18 +653,18 @@
                 <p>Click to upload photos (JPG, PNG, WEBP)</p>
                 <input type="file" id="photoUpload" accept=".jpg,.jpeg,.png,.webp" multiple>
               </div>
-              <small style="color:#889;font-size:0.75rem;">Upload up to 5 photos of the vehicle you're interested in</small>
+              <small style="color:#889;font-size:clamp(0.65rem, 1vw, 0.75rem);">Upload up to 5 photos of the vehicle you're interested in</small>
             </div>
             <div class="form-group full-width">
               <label>Reference Links (optional)</label>
-              <input type="url" id="refLink1" placeholder="https://example.com/vehicle-listing">
-              <input type="url" id="refLink2" placeholder="Additional reference link" style="margin-top:8px;">
-              <small style="color:#889;font-size:0.75rem;">Paste URLs to vehicle listings or auction sheets</small>
+              <input type="url" id="refLink1" placeholder="https://example.com/vehicle-listing" inputmode="url">
+              <input type="url" id="refLink2" placeholder="Additional reference link" style="margin-top:8px;" inputmode="url">
+              <small style="color:#889;font-size:clamp(0.65rem, 1vw, 0.75rem);">Paste URLs to vehicle listings or auction sheets</small>
             </div>
           </div>
 
-          <div style="margin-top: 32px; display: flex; justify-content: flex-end;">
-            <button type="submit" class="btn-primary" style="padding: 16px 56px; font-size: 1.05rem;">
+          <div style="margin-top: clamp(24px, 4vh, 32px); display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn-primary" style="padding: clamp(14px, 2vh, 16px) clamp(32px, 5vw, 56px); font-size: clamp(0.95rem, 1.3vw, 1.05rem);">
               <i class="fas fa-paper-plane"></i> Submit Quote Request
             </button>
           </div>
@@ -639,7 +692,7 @@
   <section id="shipping" style="background:#121225;">
     <div class="container">
       <h2 class="section-title">Shipping <span>Information</span></h2>
-      <div class="grid-4" style="grid-template-columns: repeat(auto-fit, minmax(200px,1fr));">
+      <div class="grid-4" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));">
         <div class="service-card"><i class="fas fa-ship"></i><h3>RoRo Shipping</h3><p>Drive-on/drive-off to 150+ ports worldwide.</p></div>
         <div class="service-card"><i class="fas fa-box"></i><h3>Container Shipping</h3><p>Secure 20/40ft containers for luxury vehicles.</p></div>
         <div class="service-card"><i class="fas fa-file-signature"></i><h3>Export Docs</h3><p>Complete documentation for smooth customs clearance.</p></div>
@@ -652,7 +705,7 @@
   <section id="about" style="background:#1A1A2E;">
     <div class="container">
       <h2 class="section-title">About <span>Us</span></h2>
-      <p style="max-width:700px; opacity:0.8; color:#b0b0c8;">Japan Cars Export Worldwide is a premier exporter of premium Japanese vehicles. With decades of experience, we deliver quality, transparency, and exceptional service to clients across Africa, the Middle East, and the Caribbean.</p>
+      <p style="max-width:700px; opacity:0.8; color:#b0b0c8; font-size: clamp(0.95rem, 1.3vw, 1.05rem);">Japan Cars Export Worldwide is a premier exporter of premium Japanese vehicles. With decades of experience, we deliver quality, transparency, and exceptional service to clients across Africa, the Middle East, and the Caribbean.</p>
     </div>
   </section>
 
@@ -671,17 +724,17 @@
   <section id="contact" style="background:#1A1A2E;">
     <div class="container">
       <h2 class="section-title">Contact <span>Us</span></h2>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px, 4vw, 40px);">
         <div>
-          <p><i class="fas fa-envelope text-gold"></i> info@japancarsexportworldwide.net</p>
-          <p><i class="fas fa-phone text-gold"></i> +81 70-1367-5588</p>
-          <p><i class="fas fa-map-pin text-gold"></i> Tokyo, Japan</p>
+          <p style="font-size: clamp(0.9rem, 1.2vw, 1rem);"><i class="fas fa-envelope text-gold"></i> info@japancarsexport.com</p>
+          <p style="font-size: clamp(0.9rem, 1.2vw, 1rem);"><i class="fas fa-phone text-gold"></i> +81 70-1367-5588</p>
+          <p style="font-size: clamp(0.9rem, 1.2vw, 1rem);"><i class="fas fa-map-pin text-gold"></i> Tokyo, Japan</p>
         </div>
         <div>
           <form>
-            <input type="text" placeholder="Your name" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;margin-bottom:12px;">
-            <input type="email" placeholder="Email" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;margin-bottom:12px;">
-            <textarea placeholder="Message" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;min-height:100px;"></textarea>
+            <input type="text" placeholder="Your name" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;margin-bottom:12px;font-size:clamp(0.85rem, 1.1vw, 0.95rem);">
+            <input type="email" placeholder="Email" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;margin-bottom:12px;font-size:clamp(0.85rem, 1.1vw, 0.95rem);">
+            <textarea placeholder="Message" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;min-height:100px;font-size:clamp(0.85rem, 1.1vw, 0.95rem);"></textarea>
             <button class="btn-primary" style="margin-top:8px;">Send</button>
           </form>
         </div>
@@ -692,12 +745,12 @@
   <!-- FOOTER -->
   <footer>
     <div class="container footer-grid">
-      <div><h4>Japan Cars</h4><p style="opacity:0.5;">Export Worldwide</p><div class="social"><i class="fab fa-facebook"></i><i class="fab fa-instagram"></i><i class="fab fa-youtube"></i></div></div>
+      <div><h4>Japan Cars</h4><p style="opacity:0.5; font-size: clamp(0.8rem, 1vw, 0.9rem);">Export Worldwide</p><div class="social"><i class="fab fa-facebook"></i><i class="fab fa-instagram"></i><i class="fab fa-youtube"></i></div></div>
       <div><h4>Quick</h4><a href="#hero">Home</a><a href="#quote">Quote</a><a href="#shipping">Shipping</a></div>
-      <div><h4>Contact</h4><a>info@japancarsexportworldwide.net</a><a>+81 70-1367-5588</a><a>Mon–Fri: 09:00 – 18:00 JST</a></div>
+      <div><h4>Contact</h4><a>info@japancarsexport.com</a><a>+81 70-1367-5588</a><a style="font-size: clamp(0.75rem, 0.9vw, 0.85rem);">Mon–Fri: 09:00 – 18:00 JST</a></div>
       <div><h4>Legal</h4><a>Privacy Policy</a><a>Terms of Service</a></div>
     </div>
-    <div style="text-align:center;margin-top:32px;opacity:0.3;font-size:0.8rem;">© 2026 Japan Cars Export Worldwide. All rights reserved.</div>
+    <div style="text-align:center;margin-top:clamp(20px, 4vh, 32px);opacity:0.3;font-size:clamp(0.7rem, 0.9vw, 0.8rem);">© 2026 Japan Cars Export Worldwide. All rights reserved.</div>
   </footer>
 
   <!-- WHATSAPP FLOAT - linked to phone number -->
@@ -787,6 +840,18 @@
           document.getElementById('navLinks').classList.remove('open');
         }
       });
+    });
+
+    // Close mobile nav on outside click
+    document.addEventListener('click', function(e) {
+      const nav = document.querySelector('nav');
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.getElementById('navLinks');
+      if (window.innerWidth <= 900 && navLinks.classList.contains('open')) {
+        if (!nav.contains(e.target)) {
+          navLinks.classList.remove('open');
+        }
+      }
     });
   </script>
 </body>

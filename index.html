@@ -40,33 +40,10 @@
       box-shadow: 0 20px 40px -12px rgba(0,0,0,0.6);
     }
 
-    /* ----- LIVE EXCHANGE RATE STICKY BAR ----- */
-    .exchange-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1001;
-      background: rgba(26, 26, 46, 0.92);
-      backdrop-filter: blur(8px);
-      padding: 4px 24px;
-      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #aab;
-      letter-spacing: 0.5px;
-    }
-    .exchange-bar span { color: var(--gold); margin: 0 6px; }
-    .exchange-bar .rates { display: flex; gap: 18px; }
-    .exchange-bar .rates i { margin-right: 4px; color: var(--cyan); }
-
-    /* ----- NAVIGATION ----- */
+    /* ----- NAVIGATION (no exchange bar) ----- */
     nav {
       position: fixed;
-      top: 28px;
+      top: 0;
       left: 0; width: 100%;
       z-index: 1000;
       padding: 10px 24px;
@@ -84,6 +61,10 @@
       font-size: 1.2rem;
       letter-spacing: 1px;
       color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
     .nav-logo span { color: var(--gold); }
     .nav-links {
@@ -107,29 +88,13 @@
     .nav-cta:hover { background: var(--gold-dim); transform: scale(1.02); color: #fff !important; }
     .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: #e0e0f0; }
 
-    .jumvea-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.65rem;
-      font-weight: 600;
-      color: var(--gold);
-      border: 1px solid rgba(201, 168, 76, 0.3);
-      padding: 4px 12px;
-      border-radius: 40px;
-      background: rgba(201, 168, 76, 0.06);
-      letter-spacing: 0.3px;
-      margin-left: 12px;
-    }
-    .jumvea-badge i { font-size: 0.7rem; }
-
-    /* ----- HERO ----- */
+    /* ----- HERO WITH FULLY VISIBLE BACKGROUND (Mobile + Desktop) ----- */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 140px 24px 80px;
+      padding: 120px 24px 80px;
       position: relative;
       overflow: hidden;
       background: #1A1A2E;
@@ -137,14 +102,24 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('hero.jpg') no-repeat center center/cover;
-      opacity: 0.9;
+      background: url('hero.jpg') no-repeat center center;
+      background-size: cover;
+      background-position: center;
+      opacity: 1;
       z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+    @media (max-width: 768px) {
+      .hero-bg {
+        background-size: cover;
+        background-position: center 30%;
+      }
     }
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(26, 26, 46, 0.35);
+      background: rgba(26, 26, 46, 0.30);
       z-index: 1;
     }
     .hero-content {
@@ -154,20 +129,20 @@
       text-align: center;
     }
     .hero h1 {
-      font-size: clamp(2.6rem, 8vw, 4.8rem);
+      font-size: clamp(2.2rem, 7vw, 4.8rem);
       font-weight: 800;
       letter-spacing: 2px;
       color: #ffffff;
-      text-shadow: 0 4px 32px rgba(0,0,0,0.5);
+      text-shadow: 0 4px 32px rgba(0,0,0,0.6);
     }
     .hero h1 span { color: var(--gold); }
     .hero p {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
       max-width: 640px;
       margin: 16px auto 32px;
       color: #f0f0fa;
       font-weight: 300;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      text-shadow: 0 2px 16px rgba(0,0,0,0.5);
     }
     .btn-primary {
       background: var(--gold);
@@ -239,7 +214,7 @@
     .service-card h3 { font-weight: 600; font-size: 1.2rem; color: #f0f0fa; }
     .service-card p { color: #aab; font-size: 0.9rem; }
 
-    /* ----- QUOTE FORM (improved) ----- */
+    /* ----- QUOTE FORM ----- */
     .quote-form-wrap {
       background: rgba(26, 26, 46, 0.6);
       backdrop-filter: blur(8px);
@@ -328,7 +303,8 @@
       bottom: 28px; right: 28px;
       background: #25D366;
       color: white;
-      width: 60px; height: 60px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -365,38 +341,55 @@
     .faq-answer { max-height: 0; padding: 0 24px; overflow: hidden; transition: 0.35s ease; color: #aab; }
     .faq-item.active .faq-answer { max-height: 200px; padding: 0 24px 20px; }
 
-    /* responsive */
+    /* ----- RESPONSIVE ----- */
     @media (max-width: 900px) {
       .form-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; flex-direction: column; width: 100%; background: #1A1A2E; padding: 20px; gap: 16px; border-radius: 0 0 20px 20px; }
+      .nav-links { 
+        display: none; 
+        flex-direction: column; 
+        width: 100%; 
+        background: #1A1A2E; 
+        padding: 20px; 
+        gap: 16px; 
+        border-radius: 0 0 20px 20px;
+        border-top: 1px solid rgba(201, 168, 76, 0.08);
+      }
       .nav-links.open { display: flex; }
       .hamburger { display: block; }
-      .exchange-bar { font-size: 0.6rem; padding: 2px 12px; flex-wrap: wrap; gap: 4px; }
-      .exchange-bar .rates { gap: 10px; flex-wrap: wrap; }
-      nav { top: 22px; }
-      .jumvea-badge { font-size: 0.55rem; padding: 2px 8px; margin-left: 6px; }
       .quote-form-wrap { padding: 24px; }
     }
+
     @media (max-width: 600px) {
-      .hero h1 { font-size: 2rem; }
-      .btn-primary { padding: 12px 28px; }
+      .hero { padding: 100px 16px 60px; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 0.95rem; }
+      .btn-primary { padding: 12px 28px; font-size: 0.95rem; }
+      .section-title { font-size: 1.6rem; }
+      .hero-bg {
+        background-size: cover;
+        background-position: center 25%;
+      }
+      .nav-logo { font-size: 1rem; }
+      .form-grid { gap: 16px; }
+      .quote-form-wrap { padding: 16px; }
+      .service-card { padding: 20px 16px; }
+      .grid-4 { gap: 16px; }
+      .whatsapp-float { width: 50px; height: 50px; font-size: 1.6rem; bottom: 20px; right: 20px; }
+    }
+
+    @media (max-width: 400px) {
+      .hero h1 { font-size: 1.5rem; }
+      .hero-decoration { gap: 12px; }
+      .hero-decoration span { width: 6px; height: 6px; }
     }
   </style>
 </head>
 <body>
-  <!-- LIVE EXCHANGE RATE STICKY BAR -->
-  <div class="exchange-bar">
-    <span><i class="fas fa-chart-line"></i> Live Rates:</span>
-    <div class="rates">
-      <span><i class="fas fa-yen-sign"></i> JPY/USD <span>0.0068</span></span>
-      <span><i class="fas fa-euro-sign"></i> JPY/EUR <span>0.0063</span></span>
-      <span><i class="fas fa-dollar-sign"></i> USD/JPY <span>147.20</span></span>
-    </div>
-  </div>
-
   <!-- NAVIGATION -->
   <nav>
-    <div class="nav-logo">JAPAN<span>CARS</span> <span class="jumvea-badge"><i class="fas fa-certificate"></i> JUMVEA Licensed</span></div>
+    <div class="nav-logo">
+      JAPAN<span>CARS</span>
+    </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#hero">Home</a></li>
       <li><a href="#quote">Request Quote</a></li>
@@ -409,12 +402,14 @@
     <div class="hamburger" onclick="toggleNav()"><i class="fas fa-bars"></i></div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO WITH FULLY VISIBLE BACKGROUND -->
   <section class="hero" id="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-decoration"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="hero-decoration">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
       <h1>JAPAN <span>CARS</span> EXPORT WORLDWIDE</h1>
       <p>Premium Japanese vehicles — inspected, documented, and shipped to 150+ countries.</p>
       <a href="#quote" class="btn-primary"><i class="fas fa-file-invoice"></i> Request a Quote</a>
@@ -441,78 +436,109 @@
             </div>
             <div class="form-group">
               <label>Phone Number</label>
-              <input type="tel" id="phone" placeholder="+81 90 1234 5678">
+              <input type="tel" id="phone" placeholder="+81 70-1367-5588">
             </div>
             <div class="form-group">
               <label>Country</label>
               <select id="country">
                 <option value="">Select your country</option>
-                <option value="Afghanistan">Afghanistan</option><option value="Albania">Albania</option><option value="Algeria">Algeria</option>
-                <option value="Andorra">Andorra</option><option value="Angola">Angola</option><option value="Antigua and Barbuda">Antigua and Barbuda</option>
-                <option value="Argentina">Argentina</option><option value="Armenia">Armenia</option><option value="Australia">Australia</option>
-                <option value="Austria">Austria</option><option value="Azerbaijan">Azerbaijan</option><option value="Bahamas">Bahamas</option>
-                <option value="Bahrain">Bahrain</option><option value="Bangladesh">Bangladesh</option><option value="Barbados">Barbados</option>
-                <option value="Belarus">Belarus</option><option value="Belgium">Belgium</option><option value="Belize">Belize</option>
-                <option value="Benin">Benin</option><option value="Bhutan">Bhutan</option><option value="Bolivia">Bolivia</option>
-                <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option><option value="Botswana">Botswana</option>
-                <option value="Brazil">Brazil</option><option value="Brunei">Brunei</option><option value="Bulgaria">Bulgaria</option>
-                <option value="Burkina Faso">Burkina Faso</option><option value="Burundi">Burundi</option><option value="Cabo Verde">Cabo Verde</option>
-                <option value="Cambodia">Cambodia</option><option value="Cameroon">Cameroon</option><option value="Canada">Canada</option>
-                <option value="Central African Republic">Central African Republic</option><option value="Chad">Chad</option><option value="Chile">Chile</option>
-                <option value="China">China</option><option value="Colombia">Colombia</option><option value="Comoros">Comoros</option>
-                <option value="Congo">Congo</option><option value="Costa Rica">Costa Rica</option><option value="Croatia">Croatia</option>
-                <option value="Cuba">Cuba</option><option value="Cyprus">Cyprus</option><option value="Czech Republic">Czech Republic</option>
-                <option value="Denmark">Denmark</option><option value="Djibouti">Djibouti</option><option value="Dominica">Dominica</option>
-                <option value="Dominican Republic">Dominican Republic</option><option value="Ecuador">Ecuador</option><option value="Egypt">Egypt</option>
-                <option value="El Salvador">El Salvador</option><option value="Equatorial Guinea">Equatorial Guinea</option><option value="Eritrea">Eritrea</option>
-                <option value="Estonia">Estonia</option><option value="Eswatini">Eswatini</option><option value="Ethiopia">Ethiopia</option>
-                <option value="Fiji">Fiji</option><option value="Finland">Finland</option><option value="France">France</option>
-                <option value="Gabon">Gabon</option><option value="Gambia">Gambia</option><option value="Georgia">Georgia</option>
-                <option value="Germany">Germany</option><option value="Ghana">Ghana</option><option value="Greece">Greece</option>
-                <option value="Grenada">Grenada</option><option value="Guatemala">Guatemala</option><option value="Guinea">Guinea</option>
-                <option value="Guinea-Bissau">Guinea-Bissau</option><option value="Guyana">Guyana</option><option value="Haiti">Haiti</option>
-                <option value="Honduras">Honduras</option><option value="Hungary">Hungary</option><option value="Iceland">Iceland</option>
-                <option value="India">India</option><option value="Indonesia">Indonesia</option><option value="Iran">Iran</option>
-                <option value="Iraq">Iraq</option><option value="Ireland">Ireland</option><option value="Israel">Israel</option>
-                <option value="Italy">Italy</option><option value="Jamaica">Jamaica</option><option value="Japan">Japan</option>
-                <option value="Jordan">Jordan</option><option value="Kazakhstan">Kazakhstan</option><option value="Kenya">Kenya</option>
-                <option value="Kiribati">Kiribati</option><option value="Kuwait">Kuwait</option><option value="Kyrgyzstan">Kyrgyzstan</option>
-                <option value="Laos">Laos</option><option value="Latvia">Latvia</option><option value="Lebanon">Lebanon</option>
-                <option value="Lesotho">Lesotho</option><option value="Liberia">Liberia</option><option value="Libya">Libya</option>
-                <option value="Liechtenstein">Liechtenstein</option><option value="Lithuania">Lithuania</option><option value="Luxembourg">Luxembourg</option>
-                <option value="Madagascar">Madagascar</option><option value="Malawi">Malawi</option><option value="Malaysia">Malaysia</option>
-                <option value="Maldives">Maldives</option><option value="Mali">Mali</option><option value="Malta">Malta</option>
-                <option value="Marshall Islands">Marshall Islands</option><option value="Mauritania">Mauritania</option><option value="Mauritius">Mauritius</option>
-                <option value="Mexico">Mexico</option><option value="Micronesia">Micronesia</option><option value="Moldova">Moldova</option>
-                <option value="Monaco">Monaco</option><option value="Mongolia">Mongolia</option><option value="Montenegro">Montenegro</option>
-                <option value="Morocco">Morocco</option><option value="Mozambique">Mozambique</option><option value="Myanmar">Myanmar</option>
-                <option value="Namibia">Namibia</option><option value="Nauru">Nauru</option><option value="Nepal">Nepal</option>
-                <option value="Netherlands">Netherlands</option><option value="New Zealand">New Zealand</option><option value="Nicaragua">Nicaragua</option>
-                <option value="Niger">Niger</option><option value="Nigeria">Nigeria</option><option value="North Korea">North Korea</option>
-                <option value="North Macedonia">North Macedonia</option><option value="Norway">Norway</option><option value="Oman">Oman</option>
-                <option value="Pakistan">Pakistan</option><option value="Palau">Palau</option><option value="Palestine">Palestine</option>
-                <option value="Panama">Panama</option><option value="Papua New Guinea">Papua New Guinea</option><option value="Paraguay">Paraguay</option>
-                <option value="Peru">Peru</option><option value="Philippines">Philippines</option><option value="Poland">Poland</option>
-                <option value="Portugal">Portugal</option><option value="Qatar">Qatar</option><option value="Romania">Romania</option>
-                <option value="Russia">Russia</option><option value="Rwanda">Rwanda</option><option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-                <option value="Saint Lucia">Saint Lucia</option><option value="Saint Vincent">Saint Vincent</option><option value="Samoa">Samoa</option>
+                <option value="Afghanistan">Afghanistan</option><option value="Albania">Albania</option>
+                <option value="Algeria">Algeria</option><option value="Andorra">Andorra</option>
+                <option value="Angola">Angola</option><option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                <option value="Argentina">Argentina</option><option value="Armenia">Armenia</option>
+                <option value="Australia">Australia</option><option value="Austria">Austria</option>
+                <option value="Azerbaijan">Azerbaijan</option><option value="Bahamas">Bahamas</option>
+                <option value="Bahrain">Bahrain</option><option value="Bangladesh">Bangladesh</option>
+                <option value="Barbados">Barbados</option><option value="Belarus">Belarus</option>
+                <option value="Belgium">Belgium</option><option value="Belize">Belize</option>
+                <option value="Benin">Benin</option><option value="Bhutan">Bhutan</option>
+                <option value="Bolivia">Bolivia</option><option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                <option value="Botswana">Botswana</option><option value="Brazil">Brazil</option>
+                <option value="Brunei">Brunei</option><option value="Bulgaria">Bulgaria</option>
+                <option value="Burkina Faso">Burkina Faso</option><option value="Burundi">Burundi</option>
+                <option value="Cabo Verde">Cabo Verde</option><option value="Cambodia">Cambodia</option>
+                <option value="Cameroon">Cameroon</option><option value="Canada">Canada</option>
+                <option value="Central African Republic">Central African Republic</option><option value="Chad">Chad</option>
+                <option value="Chile">Chile</option><option value="China">China</option>
+                <option value="Colombia">Colombia</option><option value="Comoros">Comoros</option>
+                <option value="Congo">Congo</option><option value="Costa Rica">Costa Rica</option>
+                <option value="Croatia">Croatia</option><option value="Cuba">Cuba</option>
+                <option value="Cyprus">Cyprus</option><option value="Czech Republic">Czech Republic</option>
+                <option value="Denmark">Denmark</option><option value="Djibouti">Djibouti</option>
+                <option value="Dominica">Dominica</option><option value="Dominican Republic">Dominican Republic</option>
+                <option value="Ecuador">Ecuador</option><option value="Egypt">Egypt</option>
+                <option value="El Salvador">El Salvador</option><option value="Equatorial Guinea">Equatorial Guinea</option>
+                <option value="Eritrea">Eritrea</option><option value="Estonia">Estonia</option>
+                <option value="Eswatini">Eswatini</option><option value="Ethiopia">Ethiopia</option>
+                <option value="Fiji">Fiji</option><option value="Finland">Finland</option>
+                <option value="France">France</option><option value="Gabon">Gabon</option>
+                <option value="Gambia">Gambia</option><option value="Georgia">Georgia</option>
+                <option value="Germany">Germany</option><option value="Ghana">Ghana</option>
+                <option value="Greece">Greece</option><option value="Grenada">Grenada</option>
+                <option value="Guatemala">Guatemala</option><option value="Guinea">Guinea</option>
+                <option value="Guinea-Bissau">Guinea-Bissau</option><option value="Guyana">Guyana</option>
+                <option value="Haiti">Haiti</option><option value="Honduras">Honduras</option>
+                <option value="Hungary">Hungary</option><option value="Iceland">Iceland</option>
+                <option value="India">India</option><option value="Indonesia">Indonesia</option>
+                <option value="Iran">Iran</option><option value="Iraq">Iraq</option>
+                <option value="Ireland">Ireland</option><option value="Israel">Israel</option>
+                <option value="Italy">Italy</option><option value="Jamaica">Jamaica</option>
+                <option value="Japan">Japan</option><option value="Jordan">Jordan</option>
+                <option value="Kazakhstan">Kazakhstan</option><option value="Kenya">Kenya</option>
+                <option value="Kiribati">Kiribati</option><option value="Kuwait">Kuwait</option>
+                <option value="Kyrgyzstan">Kyrgyzstan</option><option value="Laos">Laos</option>
+                <option value="Latvia">Latvia</option><option value="Lebanon">Lebanon</option>
+                <option value="Lesotho">Lesotho</option><option value="Liberia">Liberia</option>
+                <option value="Libya">Libya</option><option value="Liechtenstein">Liechtenstein</option>
+                <option value="Lithuania">Lithuania</option><option value="Luxembourg">Luxembourg</option>
+                <option value="Madagascar">Madagascar</option><option value="Malawi">Malawi</option>
+                <option value="Malaysia">Malaysia</option><option value="Maldives">Maldives</option>
+                <option value="Mali">Mali</option><option value="Malta">Malta</option>
+                <option value="Marshall Islands">Marshall Islands</option><option value="Mauritania">Mauritania</option>
+                <option value="Mauritius">Mauritius</option><option value="Mexico">Mexico</option>
+                <option value="Micronesia">Micronesia</option><option value="Moldova">Moldova</option>
+                <option value="Monaco">Monaco</option><option value="Mongolia">Mongolia</option>
+                <option value="Montenegro">Montenegro</option><option value="Morocco">Morocco</option>
+                <option value="Mozambique">Mozambique</option><option value="Myanmar">Myanmar</option>
+                <option value="Namibia">Namibia</option><option value="Nauru">Nauru</option>
+                <option value="Nepal">Nepal</option><option value="Netherlands">Netherlands</option>
+                <option value="New Zealand">New Zealand</option><option value="Nicaragua">Nicaragua</option>
+                <option value="Niger">Niger</option><option value="Nigeria">Nigeria</option>
+                <option value="North Korea">North Korea</option><option value="North Macedonia">North Macedonia</option>
+                <option value="Norway">Norway</option><option value="Oman">Oman</option>
+                <option value="Pakistan">Pakistan</option><option value="Palau">Palau</option>
+                <option value="Palestine">Palestine</option><option value="Panama">Panama</option>
+                <option value="Papua New Guinea">Papua New Guinea</option><option value="Paraguay">Paraguay</option>
+                <option value="Peru">Peru</option><option value="Philippines">Philippines</option>
+                <option value="Poland">Poland</option><option value="Portugal">Portugal</option>
+                <option value="Qatar">Qatar</option><option value="Romania">Romania</option>
+                <option value="Russia">Russia</option><option value="Rwanda">Rwanda</option>
+                <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option><option value="Saint Lucia">Saint Lucia</option>
+                <option value="Saint Vincent">Saint Vincent</option><option value="Samoa">Samoa</option>
                 <option value="San Marino">San Marino</option><option value="Sao Tome and Principe">Sao Tome and Principe</option>
-                <option value="Saudi Arabia">Saudi Arabia</option><option value="Senegal">Senegal</option><option value="Serbia">Serbia</option>
-                <option value="Seychelles">Seychelles</option><option value="Sierra Leone">Sierra Leone</option><option value="Singapore">Singapore</option>
-                <option value="Slovakia">Slovakia</option><option value="Slovenia">Slovenia</option><option value="Solomon Islands">Solomon Islands</option>
-                <option value="Somalia">Somalia</option><option value="South Africa">South Africa</option><option value="South Korea">South Korea</option>
-                <option value="South Sudan">South Sudan</option><option value="Spain">Spain</option><option value="Sri Lanka">Sri Lanka</option>
-                <option value="Sudan">Sudan</option><option value="Suriname">Suriname</option><option value="Sweden">Sweden</option>
-                <option value="Switzerland">Switzerland</option><option value="Syria">Syria</option><option value="Taiwan">Taiwan</option>
-                <option value="Tajikistan">Tajikistan</option><option value="Tanzania">Tanzania</option><option value="Thailand">Thailand</option>
-                <option value="Timor-Leste">Timor-Leste</option><option value="Togo">Togo</option><option value="Tonga">Tonga</option>
-                <option value="Trinidad and Tobago">Trinidad and Tobago</option><option value="Tunisia">Tunisia</option><option value="Turkey">Turkey</option>
-                <option value="Turkmenistan">Turkmenistan</option><option value="Tuvalu">Tuvalu</option><option value="Uganda">Uganda</option>
-                <option value="Ukraine">Ukraine</option><option value="United Arab Emirates">United Arab Emirates</option>
-                <option value="United Kingdom">United Kingdom</option><option value="United States">United States</option>
-                <option value="Uruguay">Uruguay</option><option value="Uzbekistan">Uzbekistan</option><option value="Vanuatu">Vanuatu</option>
-                <option value="Vatican City">Vatican City</option><option value="Venezuela">Venezuela</option><option value="Vietnam">Vietnam</option>
-                <option value="Yemen">Yemen</option><option value="Zambia">Zambia</option><option value="Zimbabwe">Zimbabwe</option>
+                <option value="Saudi Arabia">Saudi Arabia</option><option value="Senegal">Senegal</option>
+                <option value="Serbia">Serbia</option><option value="Seychelles">Seychelles</option>
+                <option value="Sierra Leone">Sierra Leone</option><option value="Singapore">Singapore</option>
+                <option value="Slovakia">Slovakia</option><option value="Slovenia">Slovenia</option>
+                <option value="Solomon Islands">Solomon Islands</option><option value="Somalia">Somalia</option>
+                <option value="South Africa">South Africa</option><option value="South Korea">South Korea</option>
+                <option value="South Sudan">South Sudan</option><option value="Spain">Spain</option>
+                <option value="Sri Lanka">Sri Lanka</option><option value="Sudan">Sudan</option>
+                <option value="Suriname">Suriname</option><option value="Sweden">Sweden</option>
+                <option value="Switzerland">Switzerland</option><option value="Syria">Syria</option>
+                <option value="Taiwan">Taiwan</option><option value="Tajikistan">Tajikistan</option>
+                <option value="Tanzania">Tanzania</option><option value="Thailand">Thailand</option>
+                <option value="Timor-Leste">Timor-Leste</option><option value="Togo">Togo</option>
+                <option value="Tonga">Tonga</option><option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                <option value="Tunisia">Tunisia</option><option value="Turkey">Turkey</option>
+                <option value="Turkmenistan">Turkmenistan</option><option value="Tuvalu">Tuvalu</option>
+                <option value="Uganda">Uganda</option><option value="Ukraine">Ukraine</option>
+                <option value="United Arab Emirates">United Arab Emirates</option><option value="United Kingdom">United Kingdom</option>
+                <option value="United States">United States</option><option value="Uruguay">Uruguay</option>
+                <option value="Uzbekistan">Uzbekistan</option><option value="Vanuatu">Vanuatu</option>
+                <option value="Vatican City">Vatican City</option><option value="Venezuela">Venezuela</option>
+                <option value="Vietnam">Vietnam</option><option value="Yemen">Yemen</option>
+                <option value="Zambia">Zambia</option><option value="Zimbabwe">Zimbabwe</option>
               </select>
             </div>
 
@@ -603,7 +629,7 @@
       <div class="grid-4">
         <div class="service-card"><i class="fas fa-check-circle"></i><h3>Quality Inspected</h3><p>Every vehicle passes a rigorous 200-point inspection.</p></div>
         <div class="service-card"><i class="fas fa-ship"></i><h3>Worldwide Shipping</h3><p>RoRo & container shipping to 150+ countries.</p></div>
-        <div class="service-card"><i class="fas fa-file-alt"></i><h3>Export Documentation</h3><p>JUMVEA-certified paperwork for smooth customs.</p></div>
+        <div class="service-card"><i class="fas fa-file-alt"></i><h3>Export Documentation</h3><p>Complete paperwork for smooth customs clearance.</p></div>
         <div class="service-card"><i class="fas fa-headset"></i><h3>24/7 Support</h3><p>Dedicated team available around the clock.</p></div>
       </div>
     </div>
@@ -616,7 +642,7 @@
       <div class="grid-4" style="grid-template-columns: repeat(auto-fit, minmax(200px,1fr));">
         <div class="service-card"><i class="fas fa-ship"></i><h3>RoRo Shipping</h3><p>Drive-on/drive-off to 150+ ports worldwide.</p></div>
         <div class="service-card"><i class="fas fa-box"></i><h3>Container Shipping</h3><p>Secure 20/40ft containers for luxury vehicles.</p></div>
-        <div class="service-card"><i class="fas fa-file-signature"></i><h3>Export Docs</h3><p>JUMVEA-certified documentation for smooth customs.</p></div>
+        <div class="service-card"><i class="fas fa-file-signature"></i><h3>Export Docs</h3><p>Complete documentation for smooth customs clearance.</p></div>
         <div class="service-card"><i class="fas fa-clock"></i><h3>Delivery Timeline</h3><p>4–8 weeks — real-time tracking available.</p></div>
       </div>
     </div>
@@ -626,7 +652,7 @@
   <section id="about" style="background:#1A1A2E;">
     <div class="container">
       <h2 class="section-title">About <span>Us</span></h2>
-      <p style="max-width:700px; opacity:0.8; color:#b0b0c8;">Japan Cars Export Worldwide is a JUMVEA-licensed exporter of premium Japanese vehicles. With decades of experience, we deliver quality, transparency, and exceptional service to clients across Africa, the Middle East, and the Caribbean.</p>
+      <p style="max-width:700px; opacity:0.8; color:#b0b0c8;">Japan Cars Export Worldwide is a premier exporter of premium Japanese vehicles. With decades of experience, we deliver quality, transparency, and exceptional service to clients across Africa, the Middle East, and the Caribbean.</p>
     </div>
   </section>
 
@@ -636,7 +662,7 @@
       <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How long does shipping take? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">4–8 weeks depending on destination and shipping method.</div></div>
       <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Which countries do you export to? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">We export to 150+ countries across Africa, Middle East, Caribbean, and beyond.</div></div>
       <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What payment methods are accepted? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Bank transfer, LC, and secure payment gateways.</div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Are vehicles inspected before export? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes — every vehicle undergoes a 200-point JUMVEA inspection.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Are vehicles inspected before export? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes — every vehicle undergoes a thorough 200-point inspection.</div></div>
       <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Can I request a specific vehicle? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Absolutely — we offer sourcing services for any model.</div></div>
     </div>
   </section>
@@ -646,8 +672,19 @@
     <div class="container">
       <h2 class="section-title">Contact <span>Us</span></h2>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
-        <div><p><i class="fas fa-envelope text-gold"></i> info@japancarsexport.com</p><p><i class="fas fa-phone text-gold"></i> +81 90 1234 5678</p><p><i class="fas fa-map-pin text-gold"></i> Tokyo, Japan</p><p style="margin-top:12px;font-size:0.85rem;color:#889;"><i class="fas fa-certificate text-gold"></i> JUMVEA Licensed Exporter #J-2024-001</p></div>
-        <div><form><input type="text" placeholder="Your name" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;margin-bottom:12px;"><input type="email" placeholder="Email" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;margin-bottom:12px;"><textarea placeholder="Message" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;min-height:100px;"></textarea><button class="btn-primary" style="margin-top:8px;">Send</button></form></div>
+        <div>
+          <p><i class="fas fa-envelope text-gold"></i> info@japancarsexport.com</p>
+          <p><i class="fas fa-phone text-gold"></i> +81 70-1367-5588</p>
+          <p><i class="fas fa-map-pin text-gold"></i> Tokyo, Japan</p>
+        </div>
+        <div>
+          <form>
+            <input type="text" placeholder="Your name" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;margin-bottom:12px;">
+            <input type="email" placeholder="Email" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;margin-bottom:12px;">
+            <textarea placeholder="Message" style="width:100%;padding:12px;border-radius:16px;border:1px solid rgba(201,168,76,0.08);background:#1A1A2E;color:#e8e8f0;min-height:100px;"></textarea>
+            <button class="btn-primary" style="margin-top:8px;">Send</button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -657,18 +694,22 @@
     <div class="container footer-grid">
       <div><h4>Japan Cars</h4><p style="opacity:0.5;">Export Worldwide</p><div class="social"><i class="fab fa-facebook"></i><i class="fab fa-instagram"></i><i class="fab fa-youtube"></i></div></div>
       <div><h4>Quick</h4><a href="#hero">Home</a><a href="#quote">Quote</a><a href="#shipping">Shipping</a></div>
-      <div><h4>Contact</h4><a>info@japancarsexport.com</a><a>+81 90 1234 5678</a><a>Mon–Fri: 09:00 – 18:00 JST</a></div>
+      <div><h4>Contact</h4><a>info@japancarsexport.com</a><a>+81 70-1367-5588</a><a>Mon–Fri: 09:00 – 18:00 JST</a></div>
       <div><h4>Legal</h4><a>Privacy Policy</a><a>Terms of Service</a></div>
     </div>
-    <div style="text-align:center;margin-top:32px;opacity:0.3;font-size:0.8rem;">© 2026 Japan Cars Export Worldwide. JUMVEA Licensed.</div>
+    <div style="text-align:center;margin-top:32px;opacity:0.3;font-size:0.8rem;">© 2026 Japan Cars Export Worldwide. All rights reserved.</div>
   </footer>
 
-  <!-- WHATSAPP FLOAT -->
-  <a href="#" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+  <!-- WHATSAPP FLOAT - linked to phone number -->
+  <a href="https://wa.me/817013675588" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <script>
     // NAV TOGGLE
-    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
 
     // FAQ TOGGLE
     function toggleFaq(el) {
@@ -691,7 +732,7 @@
         return;
       }
       
-      // Collect form data for console/log (in production, send to backend)
+      // Collect form data (in production, send to backend)
       const formData = {
         name: name,
         email: email,
@@ -736,6 +777,15 @@
         const target = document.querySelector(href);
         if (target) target.scrollIntoView({ behavior: 'smooth' });
         if (window.innerWidth <= 900) document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 900) {
+          document.getElementById('navLinks').classList.remove('open');
+        }
       });
     });
   </script>

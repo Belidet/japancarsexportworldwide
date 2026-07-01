@@ -59,7 +59,7 @@
       box-shadow: 0 20px 40px -12px rgba(0,0,0,0.6);
     }
 
-    /* ----- NAVIGATION (Flexbox) ----- */
+    /* ----- NAVIGATION ----- */
     nav {
       position: fixed;
       top: 0;
@@ -128,7 +128,7 @@
       touch-action: manipulation;
     }
 
-    /* ----- HERO (Flexbox) ----- */
+    /* ----- HERO ----- */
     .hero {
       min-height: 100vh;
       min-height: 100dvh;
@@ -249,10 +249,15 @@
       font-size: clamp(0.9rem, 1.5vw, 1.05rem);
     }
 
-    /* ----- GRID SYSTEM (CSS Grid) ----- */
+    /* ----- GRID SYSTEMS ----- */
     .grid-4 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: clamp(16px, 2.5vw, 32px);
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
       gap: clamp(16px, 2.5vw, 32px);
     }
     .grid-2 {
@@ -261,7 +266,7 @@
       gap: clamp(24px, 4vw, 48px);
     }
 
-    /* ----- SERVICE CARDS (Flexbox) ----- */
+    /* ----- SERVICE CARDS ----- */
     .service-card {
       background: rgba(26, 26, 46, 0.5);
       backdrop-filter: blur(4px);
@@ -292,8 +297,21 @@
       font-size: clamp(0.8rem, 1.2vw, 0.95rem);
       margin: 0;
     }
+    .service-card .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(36px, 5vw, 48px);
+      height: clamp(36px, 5vw, 48px);
+      border-radius: 50%;
+      background: var(--gold);
+      color: #1A1A2E;
+      font-weight: 800;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      margin-bottom: 8px;
+    }
 
-    /* ----- QUOTE FORM (CSS Grid) ----- */
+    /* ----- QUOTE FORM ----- */
     .quote-form-wrap {
       background: rgba(26, 26, 46, 0.6);
       backdrop-filter: blur(8px);
@@ -395,7 +413,7 @@
       color: #E53935;
     }
 
-    /* ----- FAQ (Flexbox) ----- */
+    /* ----- FAQ ----- */
     .faq-item {
       background: rgba(26, 26, 46, 0.4);
       border-radius: 20px;
@@ -433,7 +451,42 @@
       padding: 0 clamp(16px, 2.5vw, 28px) clamp(16px, 2vw, 24px);
     }
 
-    /* ----- FOOTER (CSS Grid) ----- */
+    /* ----- PROCESS STEPS ----- */
+    .process-step {
+      background: rgba(26, 26, 46, 0.4);
+      border-radius: 20px;
+      padding: clamp(20px, 3vw, 30px);
+      border: 1px solid rgba(201, 168, 76, 0.06);
+      transition: 0.3s;
+      text-align: center;
+    }
+    .process-step:hover { border-color: var(--gold); background: rgba(201, 168, 76, 0.04); }
+    .process-step .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(40px, 5vw, 56px);
+      height: clamp(40px, 5vw, 56px);
+      border-radius: 50%;
+      background: var(--gold);
+      color: #1A1A2E;
+      font-weight: 800;
+      font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+      margin-bottom: 12px;
+    }
+    .process-step h3 {
+      font-weight: 600;
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      color: #f0f0fa;
+      margin-bottom: 6px;
+    }
+    .process-step p {
+      color: #aab;
+      font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+      margin: 0;
+    }
+
+    /* ----- FOOTER ----- */
     footer {
       background: #121225;
       padding: clamp(32px, 6vh, 56px) 0 clamp(16px, 3vh, 32px);
@@ -499,37 +552,43 @@
     .bg-dark { background: #121225; }
     .bg-indigo { background: #1A1A2E; }
     .text-center { text-align: center; }
-    .flex-center {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .intro-text {
+      max-width: 800px;
+      margin: 0 auto clamp(24px, 4vh, 40px);
+      padding: clamp(20px, 3vw, 32px);
+      background: rgba(201, 168, 76, 0.04);
+      border-radius: 20px;
+      border: 1px solid rgba(201, 168, 76, 0.08);
+      text-align: center;
     }
-    .gap-8 { gap: 8px; }
-    .gap-16 { gap: 16px; }
-    .mt-16 { margin-top: 16px; }
-    .mt-24 { margin-top: 24px; }
-    .mb-16 { margin-bottom: 16px; }
-    .mb-24 { margin-bottom: 24px; }
+    .intro-text p {
+      font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+      color: #c0c0d8;
+      line-height: 1.8;
+    }
+    .intro-text i {
+      color: var(--gold);
+      margin-right: 6px;
+    }
 
     /* ============================================
-       MEDIA QUERIES (Common Breakpoints)
+       MEDIA QUERIES
        ============================================ */
 
-    /* 1200px - Large Desktop */
     @media (min-width: 1200px) {
       .container { padding: 0 48px; }
       .grid-4 { grid-template-columns: repeat(4, 1fr); }
     }
 
-    /* 992px - Desktop / Tablet Landscape */
     @media (max-width: 992px) {
       .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
       .form-grid { grid-template-columns: 1fr 1fr; }
     }
 
-    /* 768px - Tablet / Small Laptop */
     @media (max-width: 768px) {
       .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
       .form-grid { grid-template-columns: 1fr 1fr; }
       .grid-2 { grid-template-columns: 1fr; }
       
@@ -554,9 +613,9 @@
       .service-card { padding: clamp(16px, 2.5vw, 24px); }
     }
 
-    /* 576px - Mobile */
     @media (max-width: 576px) {
       .grid-4 { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .grid-3 { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
       .form-grid { grid-template-columns: 1fr; }
       .grid-2 { grid-template-columns: 1fr; }
       
@@ -592,12 +651,12 @@
       .file-upload-wrap { min-height: 60px; padding: 16px; }
       .form-group input,
       .form-group select,
-      .form-group textarea { min-height: 44px; font-size: 16px; /* prevents iOS zoom */ }
+      .form-group textarea { min-height: 44px; font-size: 16px; }
       
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      .intro-text { padding: 16px; }
     }
 
-    /* 400px - Small Mobile */
     @media (max-width: 400px) {
       .hero h1 { font-size: 1.4rem; }
       .hero-decoration { gap: 10px; }
@@ -609,7 +668,7 @@
       .container { padding: 0 12px; }
     }
 
-    /* Touch-friendly form elements */
+    /* Touch-friendly */
     input, select, textarea, button, .file-upload-wrap, .faq-question {
       touch-action: manipulation;
     }
@@ -629,7 +688,6 @@
     }
     select option { background: #1A1A2E; color: #e8e8f0; }
 
-    /* Contact section responsive */
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
@@ -646,8 +704,9 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#hero">Home</a></li>
       <li><a href="#quote">Request Quote</a></li>
+      <li><a href="#dismantling">Dismantling</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
       <li><a href="#shipping">Shipping</a></li>
-      <li><a href="#about">About</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#quote" class="nav-cta"><i class="fas fa-paper-plane"></i> Quote</a></li>
@@ -664,7 +723,7 @@
         <span></span><span></span><span></span><span></span><span></span>
       </div>
       <h1>JAPAN <span>CARS</span> EXPORT WORLDWIDE</h1>
-      <p>Premium Japanese vehicles — inspected, documented, and shipped to 150+ countries.</p>
+      <p>Import Quality Used Cars Directly from Japan — We help individuals and businesses import high-quality used vehicles directly from Japan at competitive prices.</p>
       <a href="#quote" class="btn-primary"><i class="fas fa-file-invoice"></i> Request a Quote</a>
     </div>
   </section>
@@ -672,13 +731,19 @@
   <!-- QUOTE REQUEST FORM -->
   <section id="quote" class="bg-dark">
     <div class="container">
+      <!-- Introduction Text -->
+      <div class="intro-text">
+        <p>
+          <i class="fas fa-globe"></i> We specialize in sourcing, purchasing, dismantling, and exporting high-quality used vehicles, engines, and spare parts directly from Japan at competitive prices. Whether you need a complete vehicle or dismantled parts, we provide reliable worldwide shipping with professionally packed exports and customized quotations based on your requirements or budget.
+        </p>
+      </div>
+
       <h2 class="section-title">Request a <span>Quote</span></h2>
-      <p class="section-sub">Fill in your details and our team will get back to you with a competitive offer.</p>
+      <p class="section-sub">Simply tell us the make, model, year, or your budget, and our team will search the Japanese market and provide you with the best available quotation.</p>
       
       <div class="quote-form-wrap">
         <form id="quoteForm" method="POST" action="#" enctype="multipart/form-data">
           <div class="form-grid">
-            <!-- Personal Information -->
             <div class="form-group">
               <label>Full Name <span class="required">*</span></label>
               <input type="text" id="fullName" required placeholder="e.g. Taro Yamada">
@@ -795,7 +860,6 @@
               </select>
             </div>
 
-            <!-- Vehicle Requirements -->
             <div class="form-group">
               <label>Vehicle Make</label>
               <select id="make">
@@ -845,7 +909,6 @@
               <textarea id="requirements" placeholder="Color preference, trim level, specific features, special requests..."></textarea>
             </div>
 
-            <!-- File Uploads -->
             <div class="form-group full-width">
               <label>Vehicle Photos (optional)</label>
               <div class="file-upload-wrap" onclick="document.getElementById('photoUpload').click()">
@@ -871,6 +934,96 @@
 
           <div id="formFeedback" class="form-feedback"></div>
         </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- VEHICLE DISMANTLING SERVICES -->
+  <section id="dismantling" class="bg-indigo">
+    <div class="container">
+      <h2 class="section-title">Vehicle <span>Dismantling Services</span></h2>
+      <p class="section-sub">We specialize in purchasing, dismantling, and exporting vehicles from Japan to maximize container space and reduce shipping costs.</p>
+      
+      <div class="grid-2" style="margin-bottom: 32px;">
+        <div class="service-card" style="text-align: left; align-items: flex-start;">
+          <i class="fas fa-tools" style="font-size: clamp(2.5rem, 4vw, 3.5rem);"></i>
+          <h3>Expert Dismantling</h3>
+          <p>Our experienced team carefully dismantles cars, trucks, buses, and heavy machinery to maximize container space and reduce shipping costs.</p>
+        </div>
+        <div class="service-card" style="text-align: left; align-items: flex-start;">
+          <i class="fas fa-boxes" style="font-size: clamp(2.5rem, 4vw, 3.5rem);"></i>
+          <h3>Secure Packing</h3>
+          <p>All parts are handled with care, securely packed, and prepared for safe international export.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="service-card">
+          <i class="fas fa-car"></i>
+          <h3>Complete Vehicles</h3>
+          <p>Full vehicles prepared for export with all necessary documentation.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-cogs"></i>
+          <h3>Engines & Parts</h3>
+          <p>High-quality used engines and spare parts from Japanese vehicles.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-truck"></i>
+          <h3>Dismantled Units</h3>
+          <p>Maximize container space with professionally dismantled units.</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 32px; padding: 24px; background: rgba(201,168,76,0.04); border-radius: 20px; border: 1px solid rgba(201,168,76,0.08);">
+        <p style="font-size: clamp(0.95rem, 1.3vw, 1.1rem); color: #b0b0c8;">
+          <i class="fas fa-globe text-gold"></i> 
+          Whether you need complete vehicles, engines, spare parts, or dismantled units, we provide reliable, efficient, and professional service worldwide.
+        </p>
+        <a href="#quote" class="btn-primary" style="margin-top: 16px;">
+          <i class="fas fa-paper-plane"></i> Get a Quote for Parts
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="bg-dark">
+    <div class="container">
+      <h2 class="section-title">How the <span>Process Works</span></h2>
+      <p class="section-sub">Our goal is to make importing from Japan simple, transparent, and reliable while ensuring you receive a quality vehicle at the best possible price.</p>
+      
+      <div class="grid-3">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <h3>Request a Quote</h3>
+          <p>Send us your preferred vehicle details or your budget, and we will prepare a personalized quotation.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <h3>Confirm Your Order</h3>
+          <p>Once you approve the quotation, a <strong style="color:var(--gold);">refundable deposit</strong> is required to secure your order and begin the purchasing process.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <h3>Vehicle Purchase</h3>
+          <p>Our team purchases the vehicle from trusted Japanese auctions and suppliers after your approval.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <h3>Final Payment</h3>
+          <p>The remaining balance is paid before the vehicle is shipped.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">5</div>
+          <h3>Shipping & Documentation</h3>
+          <p>We arrange shipping, export documentation, and provide you with the necessary documents to receive your vehicle at the destination port.</p>
+        </div>
+        <div class="process-step" style="border-color: var(--gold);">
+          <div class="step-num" style="background: var(--cyan); color: #1A1A2E;"><i class="fas fa-check"></i></div>
+          <h3>Done!</h3>
+          <p>Your vehicle arrives safely at your destination — hassle-free import experience.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -901,16 +1054,8 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="bg-indigo">
-    <div class="container">
-      <h2 class="section-title">About <span>Us</span></h2>
-      <p style="max-width:700px; opacity:0.8; color:#b0b0c8; font-size: clamp(0.95rem, 1.3vw, 1.1rem);">Japan Cars Export Worldwide is a premier exporter of premium Japanese vehicles. With decades of experience, we deliver quality, transparency, and exceptional service to clients across Africa, the Middle East, and the Caribbean.</p>
-    </div>
-  </section>
-
   <!-- FAQ -->
-  <section id="faq" class="bg-dark">
+  <section id="faq" class="bg-indigo">
     <div class="container">
       <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
       <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How long does shipping take? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">4–8 weeks depending on destination and shipping method.</div></div>
@@ -922,7 +1067,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="bg-indigo">
+  <section id="contact" class="bg-dark">
     <div class="container">
       <h2 class="section-title">Contact <span>Us</span></h2>
       <div class="contact-grid">
@@ -959,6 +1104,8 @@
         <h4>Quick</h4>
         <a href="#hero">Home</a>
         <a href="#quote">Quote</a>
+        <a href="#dismantling">Dismantling</a>
+        <a href="#how-it-works">How It Works</a>
         <a href="#shipping">Shipping</a>
       </div>
       <div>
@@ -1032,13 +1179,6 @@
       
       feedback.className = 'form-feedback success';
       feedback.innerHTML = '✅ Thank you for your request. Our team will review your requirements and send you a quotation shortly.';
-      
-      setTimeout(() => {
-        // Uncomment to reset form
-        // document.getElementById('quoteForm').reset();
-        // feedback.className = 'form-feedback';
-        // feedback.textContent = '';
-      }, 8000);
     });
 
     // Smooth scroll for anchor links
